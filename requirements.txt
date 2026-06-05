@@ -1,0 +1,5 @@
+python-telegram-bot[webhooks]
+langchain-google-genai
+langchain-community
+tavily-python
+langgraph
