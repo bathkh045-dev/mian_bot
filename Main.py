@@ -12,7 +12,7 @@ logging.basicConfig(level=logging.INFO)
 TELEGRAM_TOKEN = os.environ.get('TELEGRAM_TOKEN')
 GOOGLE_API_KEY = os.environ.get('GOOGLE_API_KEY')
 TAVILY_API_KEY = os.environ.get('TAVILY_API_KEY')
-RENDER_URL = "https://my-bot-ubfg.onrender.com"
+RENDER_URL = "https://mian-bot.onrender.com"
 
 # កំណត់ Agent សម្រាប់ស្វែងរក
 search = TavilySearchResults(tavily_api_key=TAVILY_API_KEY)
