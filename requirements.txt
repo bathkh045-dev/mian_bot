@@ -1,4 +1,6 @@
 python-telegram-bot[webhooks]
+langchain
+langchain-core
 langchain-google-genai
 langchain-community
 tavily-python
