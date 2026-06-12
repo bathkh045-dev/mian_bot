@@ -133,3 +133,11 @@ async def telegram_webhook(request: Request):
 @app.get("/")
 async def root():
     return {"status": "Bot is running perfectly!"}
+
+# --- ផ្នែកបន្ថែមថ្មីនៅខាងក្រោមបង្អស់ដើម្បីដុតបញ្ឆេះ Server (ជួរទី ១២៨) ---
+if __name__ == '__main__':
+    import uvicorn
+    # ទាញយក Port ពី Render ប្រសិនបើគ្មានវាដកយក Port 10000 ជាលំនាំដើម
+    port = int(os.environ.get("PORT", 10000))
+    logger.info(f"Starting uvicorn server on port {port}...")
+    uvicorn.run("main:app", host="0.0.0.0", port=port)
