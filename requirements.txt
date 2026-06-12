@@ -1,4 +1,6 @@
-python-telegram-bot[webhooks]
+python-telegram-bot
+fastapi
+uvicorn
 langchain
 langchain-core
 langchain-google-genai
