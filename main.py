@@ -57,20 +57,18 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def handle_photo(update: Update, context: ContextTypes.DEFAULT_TYPE):
     caption = update.message.caption or "តើរូបភាពនេះបង្ហាញពីអ្វីដែរ?"
-    prompt = f"សំណួរ៖ {caption} ចូលពិនិត្យមើលរូបភាពនេះ និងឆ្លើយតបជាភាសាខ្មែរឱ្យបានក្បោះក្បាយលម្អិត។"
+   photo_file = await update.message.photo[-1].get_file()
     
     processing_msg = await context.bot.send_message(chat_id=update.effective_chat.id, text="👁️ កំពុងពិនិត្យមើលរូបភាព...")
     
-    try:
-        # ទាញយករូបភាពទំហំធំបំផុត
-        photo_file = await update.message.photo[-1].get_file()
-        
-        # ទាញយកជា bytearray តាមរបៀបត្រឹមត្រូវ
-        photo_bytes = await photo_file.download_as_bytearray()
-        img_base64 = base64.b64encode(photo_bytes).decode('utf-8')
-        
-        # រៀបចំសារបញ្ជូនទៅកាន់ LLM ផ្ទាល់ (ជៀសវាងការឆ្លងកាត់ Agent ដែលមិនស្គាល់រូបភាព)
-        message = HumanMessage(
+   photo_bytes = await photo_file.download_as_bytearray()
+img_base64 = base64.b64encode(photo_bytes).decode('utf-8')
+       message = HumanMessage(
+    content=[
+        {"type": "text", "text": prompt},
+        {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{img_base64}"}}
+    ]
+)
             content=[
                 {"type": "text", "text": prompt},
                 {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{img_base64}"}}
