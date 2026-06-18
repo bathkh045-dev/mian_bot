@@ -111,7 +111,7 @@ async def lifespan(app: FastAPI):
     
     # បិទប្រព័ន្ធនៅពេលឈប់ដំណើរការ Server
     await telegram_app.stop()
-    await telegram_app.shutdown()
+   await telegram_app.process_update(update)
 
 # បង្កើត Web Server
 app = FastAPI(lifespan=lifespan)
